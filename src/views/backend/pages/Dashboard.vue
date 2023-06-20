@@ -310,14 +310,16 @@ export default {
 
     fetchDataChartByTopic: async function () {
       try {
-        let {
-          data: { code, success, message, labels, datas },
-        } = await this.http.get("api/v2/data-chart-by-topic").then((res) => {
-          this.datapiechart.labels = res.data.labels;
-          this.datapiechart.datas = res.data.datas;
-          console.log(this.datapiechart.labels);
-          this.piekey += 1;
-        });
+        // let {
+        //   data: { code, success, message, labels, datas },
+        // } = await this.http.get("api/v2/data-chart-by-topic").then((res) => {
+        //   this.datapiechart.labels = res.data.labels;
+        //   this.datapiechart.datas = res.data.datas;
+        //   console.log(this.datapiechart.labels);
+        //   this.piekey += 1;
+        // });
+        this.datapiechart.labels = ["Rawat Jalan", "Rawat Inap"];
+        this.datapiechart.datas = [30, 20];
       } catch (error) {}
     },
 
