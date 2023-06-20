@@ -30,12 +30,24 @@ export default {
       //);
       this.renderChart(
         {
-          labels: this.labels,
+          labels: [
+            "JANUARI",
+            "PEBRUARI",
+            "MARET",
+            "APRIL",
+            "MEI",
+            "JUNI",
+            "JULI",
+            "SEPTEMBER",
+            "OKTOBER",
+            "NOPEMBER",
+            "DESEMBER",
+          ], //this.labels,
           datasets: [
             {
               label: this.title,
               backgroundColor: "#608580",
-              data: this.datas,
+              data: [10, 20, 30, 25, 5],
             },
           ],
         },

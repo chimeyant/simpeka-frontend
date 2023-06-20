@@ -24,7 +24,7 @@
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">DATA STATISTIK</v-card-title>
+                  <v-card-title class="text-h6 box-statistik-title orange--text">JML. DOKTER</v-card-title>
                   <v-card-text style="height:90px">
                     <v-row class="justify-content-end">
                       <v-col cols="12">
@@ -60,7 +60,7 @@
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">DATA GEOSPASIAL</v-card-title>
+                  <v-card-title class="text-h6 box-statistik-title orange--text">JML. DATA KLAIM</v-card-title>
                   <v-card-text style="height:90px">
                     <v-row class="justify-content-end">
                       <v-col cols="12">
@@ -96,7 +96,7 @@
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">DATA KEUANGAN</v-card-title>
+                  <v-card-title class="text-h6 box-statistik-title orange--text">BOX 2</v-card-title>
                   <v-card-text style="height: 90px">
                     <v-row class="justify-content-end">
                       <v-col cols="12">
@@ -130,7 +130,7 @@
               <v-card-title
                 style="background-color:#608580"
                 class="white--text"
-              >Data Berdasarkan Jenis</v-card-title>
+              >Data Statistik Per Bulan</v-card-title>
               <v-card-text class="mt-5">
                 <data-chart
                   :title="databarchart.title"
@@ -146,7 +146,7 @@
               <v-card-title
                 style="background-color:#608580"
                 class="white--text"
-              >Data Berdasarkan Topik </v-card-title>
+              >Data Berdasarkan Kategori </v-card-title>
               <v-card-text class="mt-5">
                 <pie-chart
                   :title="datapiechart.title"
@@ -159,31 +159,6 @@
           </v-col>
         </v-row>
       </v-col>
-    </v-row>
-    <v-row class="pa-6">
-      <v-col cols="12">
-        <v-card>
-          <v-card-title
-            style="background-color:#608580"
-            class="white--text"
-          >Peta Sebaran Data</v-card-title>
-          <v-card-text class="mt-5">
-            <div class="font-weight-regular grey--text mt-5">
-              <l-map
-                style="height: 500px ; z-index:0 ;"
-                :zoom="zoom"
-                :center="center"
-              >
-                <l-tile-layer
-                  :url="url"
-                  :attribution="attribution"
-                ></l-tile-layer>
-              </l-map>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
     </v-row>
 
   </v-container>
