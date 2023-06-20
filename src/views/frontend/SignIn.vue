@@ -23,14 +23,21 @@
                       cols="12"
                       md="8"
                     >
-                      <v-card-text class="mt-12">
+                      <v-card-text class="mt-3">
+
                         <div class="text-center mt-4">
                           <img
                             src="images/logo-rsud.png"
                             alt=""
                             srcset=""
-                            :width="device.desktop  ? `120px` : `120px`"
+                            :width="device.desktop  ? `100px` : `100px`"
                           >
+                        </div>
+                        <div class="mt-5 font-weight-bold title text-center">
+                          SIMPEKA
+                        </div>
+                        <div class="mt-2 font-weight-thin  text-center">
+                          Sistem Informasi Manajemen Klaim
                         </div>
 
                         <v-form class="pa-10">
@@ -83,10 +90,7 @@
                       class="green darken-2"
                     >
                       <v-row class="mt-5 mr-5 justify-end">
-                        <v-icon
-                          color="white"
-                          @click="$router.push({name:'home'})"
-                        >mdi-home</v-icon>
+
                       </v-row>
                       <v-card-text
                         class="animate__animated animate__slideInRight animate__delay-1s"

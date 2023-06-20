@@ -5,19 +5,6 @@ import Auth from "../providers/AuthProviders";
 import SignIn from "../views/frontend/SignIn.vue";
 //import Register from "../views/auth/Register.vue";
 import Home from "../views/frontend/Home.vue";
-import Topik from "../views/frontend/Topik.vue";
-import TopikDetails from "../views/frontend/components/Topik/details/Index.vue";
-import Dataset from "../views/frontend/Dataset.vue";
-import DatasetDetail from "../views/frontend/components/Dataset/details/Index.vue";
-import Organisasi from "../views/frontend/Organisasi.vue";
-import OrganisasiDetail from "../views/frontend/components/organisasi/details/Index.vue";
-import Visualisasi from "../views/frontend/Visualisasi.vue";
-import VisualisasiDetail from "../views/frontend/components/visualisasi/details/Index.vue";
-import Infografis from "../views/frontend/Infografis.vue";
-import InfografisDetail from "../views/frontend/components/infografis/details/Index.vue";
-import VideoGrafis from "../views/frontend/Videografis.vue";
-import Dokumen from "../views/frontend/Dokumen.vue";
-import Integrasi from "../views/frontend/Integrasi.vue";
 
 //BASE APLIKASI
 import Base from "../views/backend/Base.vue";
@@ -28,10 +15,6 @@ import Dashboard from "../views/backend/pages/Dashboard.vue";
 //Master Data App
 import MasterAppInfo from "../views/backend/pages/masterdata/appinfo/Index.vue";
 import MasterDataCategory from "../views/backend/pages/masterdata/category/Index.vue";
-import MasterDataOrganization from "../views/backend/pages/masterdata/organization/Index.vue";
-import MasterDataGroupData from "../views/backend/pages/masterdata/groupdata/Index.vue";
-import MasterDataTopic from "../views/backend/pages/masterdata/topic/Index.vue";
-import MasterDataRegency from "../views/backend/pages/masterdata/regency/Index.vue";
 
 /**
  * Group Pages Manajemen
@@ -76,7 +59,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/signin",
+    path: "",
     name: "signin",
     component: SignIn,
     meta: {
@@ -87,15 +70,6 @@ const routes = [
     path: "*",
     name: "page-not-found",
     component: Page404,
-  },
-  {
-    path: "",
-    name: "",
-    component: BaseFrontend,
-    children: [
-      { path: "", redirect: { name: "home" } },
-      { path: "home", name: "home", component: Home },
-    ],
   },
 
   /**

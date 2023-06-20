@@ -600,7 +600,7 @@ export default {
     signout: function () {
       this.clearMenu();
       this.signOut();
-      this.$router.push({ name: "home" });
+      this.$router.push({ name: "signin" });
     },
     deleteRecord: function () {
       this.postDelete().then(() => {
