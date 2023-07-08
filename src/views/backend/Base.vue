@@ -37,7 +37,7 @@ Template base
         nav
         color="#2a726c"
         style="height: 100vh;"
-        class="rounded-tl-xl rounded-tr-xl elevation-10  pt-3 animate__animated animate__slideInUp"
+        class="overflow-y-auto rounded-tl-xl rounded-tr-xl elevation-10  pt-3 animate__animated animate__slideInUp"
       >
         <div class="">
           <v-row class="pl-5 pr-5 pt-3 pb-10">
@@ -472,7 +472,7 @@ Template base
         <v-card-text :class="theme.color +`--text   `">
           <v-row class="ml-5 mr-5 justify-content-around">
             <span :class="drawer ? `footer-status`:`footer-status-mobile`">Status : <b> {{ dialog.delete ? "Hapus Data" :  form.add ? (form.edit ?  "Ubah Data":"Tambah Data") :'Ready' }} </b>
-              <span v-show="page.showtable"> | Records : <b> {{ records.length  }} </b> Rows | &nbsp;</span></span>
+              <span v-show="page.showtable"> | Records : <b> {{  table.footer.total  }} </b> Rows | &nbsp;</span></span>
 
             <div
               style="width:100px;height: 40px;"
@@ -495,9 +495,9 @@ Template base
               <v-pagination
                 :color="theme.color"
                 v-model="table.options.page"
-                :length="table.options.pageCount"
-                :total-visible="6"
-                circle
+                :length="page.pagination ? table.footer.pageCount: table.options.pageCount"
+                :total-visible="8"
+                :key="table.footer.key"
               ></v-pagination>
             </div>
 
@@ -540,6 +540,7 @@ export default {
       { text: 25, value: 25 },
       { text: 50, value: 50 },
     ],
+    paginationKey: 0,
   }),
 
   mixins: [baseMixins],

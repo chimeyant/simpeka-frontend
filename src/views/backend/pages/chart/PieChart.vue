@@ -50,7 +50,7 @@ export default {
             labels: this.labels,
             datasets: [
               {
-                backgroundColor: this.colors,
+                backgroundColor: ["red", "orange"],
                 data: this.datas,
               },
             ],

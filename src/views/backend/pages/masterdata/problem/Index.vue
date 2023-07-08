@@ -219,53 +219,31 @@
               small
               color="orange"
               class="mr-1 animate__animated animate__flash animate__infinite"
-            >mdi-circle</v-icon> Formulir Master Kategori
+            >mdi-circle</v-icon> Formulir Master Pencarian Alasan
           </v-toolbar>
           <v-card-text class="mt-2">
             <v-col col="12">
-              <v-text-field
+              <v-select
+                label="Kategory"
                 outlined
-                :color="theme.color"
-                hide-details
-                label="Kode"
-                placeholder="Isilah kode kategori bila diperlukan"
-                v-model="record.code"
-                :filled="record.code"
                 dense
-              ></v-text-field>
+                hide-details
+                v-model="record.category_uuid"
+                :items="categories"
+              ></v-select>
             </v-col>
             <v-col col="12">
-              <v-text-field
+              <v-textarea
                 outlined
                 :color="theme.color"
                 hide-details
-                label="*Kategori"
-                placeholder="Isilah nama kategori yang anda inginkan"
+                label="*Tags Pencarian"
+                placeholder=""
                 v-model="record.name"
                 :filled="record.name"
                 dense
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-textarea
-                label="Penjelasan"
-                outlined
-                placeholder="Isilah penjelsan mengenai kategori yang anda buat"
-                dense
-                hide-details
-                v-model="record.description"
-                :color="theme.color"
-                :filled="record.description"
                 rows="3"
-              >{{ record.description }}</v-textarea>
-            </v-col>
-            <v-col cols="12">
-              <v-switch
-                label="Status"
-                :color="theme.color"
-                v-model="record.status"
-                dense
-              ></v-switch>
+              ></v-textarea>
             </v-col>
           </v-card-text>
 
@@ -294,46 +272,32 @@
     </v-col>
   </div>
 </template>
-<script>
+      <script>
 import { mapActions, mapState } from "vuex";
 import "animate.css";
 
 export default {
-  name: "master-category",
+  name: "master-problem",
   data: () => ({
     num: 1,
     headers: [
       {
-        text: "KODE",
+        text: "KATEGORI",
         align: "start",
         sortable: false,
-        width: 50,
-        value: "code",
+        width: 300,
+        value: "category",
       },
       {
-        text: "KATEGORY",
+        text: "TAGS",
         align: "start",
         sortable: false,
         value: "name",
-        width: 300,
-      },
-      {
-        text: "KETERANGAN ALASAN",
-        value: "description",
-        sortable: false,
-        align: "left",
-      },
-      {
-        text: "STATUS",
-        value: "status",
-        width: 57,
-        sortable: false,
-        align: "center",
       },
       {
         text: "AKSI",
         value: "id",
-        width: 80,
+        width: 100,
         sortable: false,
         align: "center",
       },
@@ -370,19 +334,19 @@ export default {
   created() {
     this.setPage({
       crud: true,
-      dataUrl: "api/v2/master-data/category",
+      dataUrl: "api/v2/master-data/problem",
       pagination: false,
       key: "id",
-      title: "MASTER KATEGORI DATA",
-      subtitle: "Berikut Daftar Seluruh Kategori Yang Tersedia",
+      title: "MASTER PENCARIAN ALASAN",
+      subtitle: "Berikut Daftar Seluruh Master Pencarian Alasan Yang Tersedia",
       breadcrumbs: [
         {
-          text: "Master Data",
+          text: "Master",
           disabled: true,
           href: "",
         },
         {
-          text: "KATEGORI",
+          text: "Alasan",
           disabled: true,
           href: "",
         },
@@ -398,10 +362,13 @@ export default {
         export: false,
         help: false,
       },
+      categories: [],
     });
     this.fetchRecords();
   },
-  mounted() {},
+  mounted() {
+    this.fetchCategories();
+  },
   methods: {
     ...mapActions([
       "setPage",
@@ -466,6 +433,12 @@ export default {
           }, 500);
         },
       });
+    },
+    fetchCategories: async function () {
+      try {
+        let { data } = await this.http.get("api/v2/combo/category");
+        this.categories = data;
+      } catch (error) {}
     },
   },
 };

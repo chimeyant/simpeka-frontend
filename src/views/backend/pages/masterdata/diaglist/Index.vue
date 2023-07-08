@@ -71,7 +71,7 @@
             loading-text="Loading... Please wait"
             :search="search"
             hide-default-footer
-            @page-count="table.options.pageCount = $event"
+            @page-count="table.op.pageCount = $event"
             show-select
           >
             <v-progress-linear
@@ -219,7 +219,7 @@
               small
               color="orange"
               class="mr-1 animate__animated animate__flash animate__infinite"
-            >mdi-circle</v-icon> Formulir Master Kategori
+            >mdi-circle</v-icon> Formulir Master Diagnosis
           </v-toolbar>
           <v-card-text class="mt-2">
             <v-col col="12">
@@ -228,7 +228,7 @@
                 :color="theme.color"
                 hide-details
                 label="Kode"
-                placeholder="Isilah kode kategori bila diperlukan"
+                placeholder="Isilah kode  bila diperlukan"
                 v-model="record.code"
                 :filled="record.code"
                 dense
@@ -239,34 +239,14 @@
                 outlined
                 :color="theme.color"
                 hide-details
-                label="*Kategori"
-                placeholder="Isilah nama kategori yang anda inginkan"
+                label="*Diagnosis"
+                placeholder="Isilah diagnosis yang anda inginkan"
                 v-model="record.name"
                 :filled="record.name"
                 dense
               ></v-text-field>
             </v-col>
-            <v-col cols="12">
-              <v-textarea
-                label="Penjelasan"
-                outlined
-                placeholder="Isilah penjelsan mengenai kategori yang anda buat"
-                dense
-                hide-details
-                v-model="record.description"
-                :color="theme.color"
-                :filled="record.description"
-                rows="3"
-              >{{ record.description }}</v-textarea>
-            </v-col>
-            <v-col cols="12">
-              <v-switch
-                label="Status"
-                :color="theme.color"
-                v-model="record.status"
-                dense
-              ></v-switch>
-            </v-col>
+
           </v-card-text>
 
           <v-divider></v-divider>
@@ -294,12 +274,12 @@
     </v-col>
   </div>
 </template>
-<script>
+  <script>
 import { mapActions, mapState } from "vuex";
 import "animate.css";
 
 export default {
-  name: "master-category",
+  name: "master-diagnosis",
   data: () => ({
     num: 1,
     headers: [
@@ -311,25 +291,12 @@ export default {
         value: "code",
       },
       {
-        text: "KATEGORY",
-        align: "start",
-        sortable: false,
+        text: "DIAGNOSIS",
         value: "name",
-        width: 300,
-      },
-      {
-        text: "KETERANGAN ALASAN",
-        value: "description",
         sortable: false,
         align: "left",
       },
-      {
-        text: "STATUS",
-        value: "status",
-        width: 57,
-        sortable: false,
-        align: "center",
-      },
+
       {
         text: "AKSI",
         value: "id",
@@ -370,11 +337,12 @@ export default {
   created() {
     this.setPage({
       crud: true,
-      dataUrl: "api/v2/master-data/category",
-      pagination: false,
+      dataUrl: "api/v2/master-data/diaglist",
+      pagination: true,
       key: "id",
-      title: "MASTER KATEGORI DATA",
-      subtitle: "Berikut Daftar Seluruh Kategori Yang Tersedia",
+      title: "MASTER DIAGNOSIS",
+      subtitle: "Berikut Daftar Seluruh Diagnosis Yang Tersedia",
+
       breadcrumbs: [
         {
           text: "Master Data",
@@ -382,7 +350,7 @@ export default {
           href: "",
         },
         {
-          text: "KATEGORI",
+          text: "DIAGNOSIS",
           disabled: true,
           href: "",
         },
@@ -399,9 +367,10 @@ export default {
         help: false,
       },
     });
+  },
+  mounted() {
     this.fetchRecords();
   },
-  mounted() {},
   methods: {
     ...mapActions([
       "setPage",
@@ -414,6 +383,7 @@ export default {
       "setLoading",
       "setRecord",
       "setForm",
+      "setTable",
     ]),
     openForm: function () {
       this.setForm({
@@ -466,6 +436,14 @@ export default {
           }, 500);
         },
       });
+    },
+  },
+  watch: {
+    "table.options": {
+      handler() {
+        this.fetchRecords();
+      },
+      deep: true,
     },
   },
 };

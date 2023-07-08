@@ -219,7 +219,7 @@
               small
               color="orange"
               class="mr-1 animate__animated animate__flash animate__infinite"
-            >mdi-circle</v-icon> Formulir Master Kategori
+            >mdi-circle</v-icon> Formulir Master Dokter
           </v-toolbar>
           <v-card-text class="mt-2">
             <v-col col="12">
@@ -228,7 +228,7 @@
                 :color="theme.color"
                 hide-details
                 label="Kode"
-                placeholder="Isilah kode kategori bila diperlukan"
+                placeholder=""
                 v-model="record.code"
                 :filled="record.code"
                 dense
@@ -239,33 +239,12 @@
                 outlined
                 :color="theme.color"
                 hide-details
-                label="*Kategori"
-                placeholder="Isilah nama kategori yang anda inginkan"
+                label="*Nama Dokter"
+                placeholder="Isilah nama lengkap dokter"
                 v-model="record.name"
                 :filled="record.name"
                 dense
               ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-textarea
-                label="Penjelasan"
-                outlined
-                placeholder="Isilah penjelsan mengenai kategori yang anda buat"
-                dense
-                hide-details
-                v-model="record.description"
-                :color="theme.color"
-                :filled="record.description"
-                rows="3"
-              >{{ record.description }}</v-textarea>
-            </v-col>
-            <v-col cols="12">
-              <v-switch
-                label="Status"
-                :color="theme.color"
-                v-model="record.status"
-                dense
-              ></v-switch>
             </v-col>
           </v-card-text>
 
@@ -294,7 +273,7 @@
     </v-col>
   </div>
 </template>
-<script>
+  <script>
 import { mapActions, mapState } from "vuex";
 import "animate.css";
 
@@ -307,33 +286,19 @@ export default {
         text: "KODE",
         align: "start",
         sortable: false,
-        width: 50,
+        width: 100,
         value: "code",
       },
       {
-        text: "KATEGORY",
+        text: "NAMA",
         align: "start",
         sortable: false,
         value: "name",
-        width: 300,
-      },
-      {
-        text: "KETERANGAN ALASAN",
-        value: "description",
-        sortable: false,
-        align: "left",
-      },
-      {
-        text: "STATUS",
-        value: "status",
-        width: 57,
-        sortable: false,
-        align: "center",
       },
       {
         text: "AKSI",
         value: "id",
-        width: 80,
+        width: 100,
         sortable: false,
         align: "center",
       },
@@ -370,19 +335,19 @@ export default {
   created() {
     this.setPage({
       crud: true,
-      dataUrl: "api/v2/master-data/category",
+      dataUrl: "api/v2/master-data/doctor",
       pagination: false,
       key: "id",
-      title: "MASTER KATEGORI DATA",
-      subtitle: "Berikut Daftar Seluruh Kategori Yang Tersedia",
+      title: "MASTER DOKTER",
+      subtitle: "Berikut Daftar Seluruh Dokter Yang Tersedia",
       breadcrumbs: [
         {
-          text: "Master Data",
+          text: "Master",
           disabled: true,
           href: "",
         },
         {
-          text: "KATEGORI",
+          text: "Dokter",
           disabled: true,
           href: "",
         },

@@ -345,9 +345,10 @@ export default {
     ],
     authents: [
       { text: "Administrator", value: "administrator" },
+      { text: "Kepala Rumah Sakit", value: "kepala-rumah-sakit" },
+      { text: "Dokter", value: "dokter" },
+      { text: "BPJS Kesehatan", value: "bpjs-kesehatan" },
       { text: "Operator", value: "operator" },
-      { text: "Produsen Data", value: "opd" },
-      { text: "User", value: "user" },
     ],
     search: null,
     jurusans: [],

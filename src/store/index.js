@@ -97,6 +97,16 @@ export default new Vuex.Store({
         pageCount: 1,
       },
 
+      footer: {
+        page: 1,
+        page: 1,
+        currpage: 1,
+        itemsPerPage: 5,
+        pageCount: 1,
+        total: 0,
+        key: 0,
+      },
+
       /**
        * the table total property
        */
@@ -582,7 +592,13 @@ export default new Vuex.Store({
           });
 
           commit("TABLE_MUTATION", {
-            total: meta.total,
+            footer: {
+              total: meta.total,
+              page: meta.current_page,
+              itemsPerPage: state.table.options.itemsPerPage,
+              pageCount: meta.last_page,
+              key: state.table.footer.key + 1,
+            },
           });
 
           commit("RECORDS_MUTATION", data);

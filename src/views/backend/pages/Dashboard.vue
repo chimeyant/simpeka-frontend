@@ -12,8 +12,43 @@
         </div>
       </div>
     </v-row>
+    <v-row class="pa-6">
+      <v-col cols=8>
+        <v-card>
+          <v-card-title
+            style="background-color:#608580"
+            class="white--text"
+          >Data Statistik Per Bulan</v-card-title>
+          <v-card-text class="mt-5">
+            <data-chart
+              :title="databarchart.title"
+              :labels="databarchart.labels"
+              :datas="databarchart.datas"
+              :key="barkey"
+            />
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols=4>
+        <v-card>
+          <v-card-title
+            style="background-color:#608580"
+            class="white--text"
+          >Data Berdasarkan Kategori </v-card-title>
+          <v-card-text class="mt-5">
+            <pie-chart
+              :title="datapiechart.title"
+              :labels="datapiechart.labels"
+              :datas="datapiechart.datas"
+              :key="piekey"
+            />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <v-row class="pa-1">
+
       <v-col class="stats-widget-v3">
         <v-row :class="device.mobile ? `pa-1 ` : `pa-7`">
           <v-col :cols="device.mobile ? `12` : `4`">
@@ -24,11 +59,11 @@
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">JML. DOKTER</v-card-title>
+                  <v-card-title class="text-h6 box-statistik-title orange--text">JML. PENDING KLAIM</v-card-title>
                   <v-card-text style="height:90px">
                     <v-row class="justify-content-end">
                       <v-col cols="12">
-                        <v-row class="justify-end text-lg-h3 ml-7 mb-5 black--text">{{ groupdata.jmldatastatistik }}</v-row>
+                        <v-row class="mt-5 justify-end text-lg-h4 ml-7 mb-5 black--text">{{ dataklaimpertahun }}</v-row>
                       </v-col>
                     </v-row>
                   </v-card-text>
@@ -44,7 +79,7 @@
                     class="elevation-2"
                     :color="theme.color + ` darken-1`"
                   >
-                    <v-img src="/images/statistic.jpeg"></v-img>
+                    <v-img src="/images/claim.png"></v-img>
 
                   </v-avatar>
                 </div>
@@ -60,11 +95,11 @@
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">JML. DATA KLAIM</v-card-title>
+                  <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARIF PENDING RS</v-card-title>
                   <v-card-text style="height:90px">
                     <v-row class="justify-content-end">
                       <v-col cols="12">
-                        <v-row class="justify-end text-lg-h3 ml-7 mb-5 black--text">{{ groupdata.jmldatageospasial }}</v-row>
+                        <v-row class="mt-5 justify-end text-lg-h4  ml-7 mb-5 black--text">{{ tarifrspertahun }}</v-row>
                       </v-col>
                     </v-row>
                   </v-card-text>
@@ -74,13 +109,13 @@
                     </div>
                   </v-card-actions>
                 </div>
-                <div class="mr-8 mt-8">
+                <div class="mr-8 mt-8 ">
                   <v-avatar
                     size="80"
                     class="elevation-2"
                     :color="theme.color + ` darken-1`"
                   >
-                    <v-img src="/images/geospasial.png"></v-img>
+                    <v-img src="/images/pending-money.png"></v-img>
 
                   </v-avatar>
                 </div>
@@ -96,11 +131,11 @@
             >
               <div class="d-flex flex-no-wrap justify-space-between">
                 <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">BOX 2</v-card-title>
+                  <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARFI PENDING INA-CBGs</v-card-title>
                   <v-card-text style="height: 90px">
                     <v-row class="justify-content-end">
                       <v-col cols="12">
-                        <v-row class="justify-end text-lg-h3 ml-7 mb-5 black--text">{{ groupdata.jmldatakeuangan }}</v-row>
+                        <v-row class="mt-5 justify-end text-lg-h4 ml-7 mb-5 black--text">{{ groupdata.jmldatakeuangan }}</v-row>
                       </v-col>
                     </v-row>
                   </v-card-text>
@@ -124,40 +159,7 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row class="pa-6">
-          <v-col cols=8>
-            <v-card>
-              <v-card-title
-                style="background-color:#608580"
-                class="white--text"
-              >Data Statistik Per Bulan</v-card-title>
-              <v-card-text class="mt-5">
-                <data-chart
-                  :title="databarchart.title"
-                  :labels="databarchart.labels"
-                  :datas="databarchart.datas"
-                  :key="barkey"
-                />
-              </v-card-text>
-            </v-card>
-          </v-col>
-          <v-col cols=4>
-            <v-card>
-              <v-card-title
-                style="background-color:#608580"
-                class="white--text"
-              >Data Berdasarkan Kategori </v-card-title>
-              <v-card-text class="mt-5">
-                <pie-chart
-                  :title="datapiechart.title"
-                  :labels="datapiechart.labels"
-                  :datas="datapiechart.datas"
-                  :key="piekey"
-                />
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
+
       </v-col>
     </v-row>
 
@@ -166,7 +168,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import DataChart from "../pages/chart/BarChart.vue";
+import DataChart from "../pages/chart/ChartRecapMothly.vue";
 import PieChart from "../pages/chart/PieChart";
 import {
   LMap,
@@ -237,6 +239,9 @@ export default {
 
     markers: [],
 
+    dataklaimpertahun: 0,
+    tarifrspertahun: 0,
+
     databarchart: {
       title: "Data Statitistik",
       labels: [
@@ -249,7 +254,7 @@ export default {
       datas: [30, 40, 50, 12, 30],
     },
     datapiechart: {
-      title: "Data Berdasarkan Topik",
+      title: "Data Berdasarkan Pengobatan",
       labels: [],
       datas: [],
     },
@@ -282,9 +287,9 @@ export default {
       ],
     });
 
-    this.fetchDashboard();
-    this.fetchDataChartByTopic();
-    this.fetchDataChartByJenis();
+    this.fetcDataPertahun();
+    this.fetcTarifRsPertahun();
+    this.fetchDataPengobatan();
   },
   mounted() {},
   methods: {
@@ -308,18 +313,32 @@ export default {
       this.groupdata.jmldatakeuangan = jmldatakeuangan;
     },
 
-    fetchDataChartByTopic: async function () {
+    fetcDataPertahun: async function () {
       try {
-        // let {
-        //   data: { code, success, message, labels, datas },
-        // } = await this.http.get("api/v2/data-chart-by-topic").then((res) => {
-        //   this.datapiechart.labels = res.data.labels;
-        //   this.datapiechart.datas = res.data.datas;
-        //   console.log(this.datapiechart.labels);
-        //   this.piekey += 1;
-        // });
-        this.datapiechart.labels = ["Rawat Jalan", "Rawat Inap"];
-        this.datapiechart.datas = [30, 20];
+        let { data } = await this.http.get("api/v2/dashboard/recap-per-tahun");
+        this.dataklaimpertahun = data;
+      } catch (error) {}
+    },
+
+    fetcTarifRsPertahun: async function () {
+      try {
+        let { data } = await this.http.get(
+          "api/v2/dashboard/tarif-rs-per-tahun"
+        );
+        this.tarifrspertahun = data;
+      } catch (error) {}
+    },
+
+    fetchDataPengobatan: async function () {
+      try {
+        let { data } = await this.http
+          .get("api/v2/dashboard/per-jenis-pengobatan")
+          .then((res) => {
+            this.datapiechart.labels = ["Rawat Inap", "Rawat Jalan"];
+            this.datapiechart.datas = res.data;
+
+            this.piekey += 1;
+          });
       } catch (error) {}
     },
 

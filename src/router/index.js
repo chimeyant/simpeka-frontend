@@ -15,19 +15,14 @@ import Dashboard from "../views/backend/pages/Dashboard.vue";
 //Master Data App
 import MasterAppInfo from "../views/backend/pages/masterdata/appinfo/Index.vue";
 import MasterDataCategory from "../views/backend/pages/masterdata/category/Index.vue";
+import MasterDataDokter from "../views/backend/pages/masterdata/doctor/Index.vue";
+import MasterDataKelasBpjs from "../views/backend/pages/masterdata/kelas/Index.vue";
+import MasterDataProblem from "../views/backend/pages/masterdata/problem/Index.vue";
+import MasterDataDiagnosis from "../views/backend/pages/masterdata/diaglist/Index.vue";
+import MasterDataProclist from "../views/backend/pages/masterdata/proclist/Index.vue";
 
-/**
- * Group Pages Manajemen
- */
-import ManajemenDataset from "../views/backend/pages/manajemen/dataset/Index.vue";
-import ManajemenDatasetDetail from "../views/backend/pages/manajemen/dataset/datasetdetails/Index.vue";
-import ManajemenDatasetRow from "../views/backend/pages/manajemen/dataset/datasetdetails/datasetrow/Index.vue";
-import ManajemenDatasetTableSetting from "../views/backend/pages/manajemen/dataset/datasetdetails/tableseting/Index.vue";
-import ManajemenVisualization from "../views/backend/pages/manajemen/visualization/Index.vue";
-import ManajemenInfographic from "../views/backend/pages/manajemen/infographic/Index.vue";
-import ManajemenDocument from "../views/backend/pages/manajemen/document/Index.vue";
-import ManajemenVideographic from "../views/backend/pages/manajemen/videographic/Index.vue";
-import ManajemenPermohonan from "../views/backend/pages/manajemen/permohonan/Index.vue";
+//Manajemen Page
+import ManajemenKlaim from "../views/backend/pages/management/klaim/Index.vue";
 
 //Utiity Group Page
 import User from "../views/backend/pages/utility/user/Index.vue";
@@ -42,15 +37,6 @@ import UtilityUpdateHistoryItem from "../views/backend/pages/utility/updatehisto
 import HalamanDepanSlider from "../views/backend/pages/halamandepan/sliders/Index.vue";
 import HalamanDepanPengumuman from "../views/backend/pages/halamandepan/pengumuman/Index.vue";
 import HalamanDepanVideo from "../views/backend/pages/halamandepan/videos/Index.vue";
-
-//ROUTE MANAJEMEN
-import ManajemenCategory from "../views/backend/pages/manajemen/category/Index.vue";
-import ManajemenDomain from "../views/backend/pages/manajemen/spam/Index.vue";
-
-//Pages BTS
-import BtsPetaSebaran from "../views/backend/pages/bts/sebaran/Index.vue";
-import BtsDaftarPerusahan from "../views/backend/pages/bts/perusahaan/Index.vue";
-import BtsSurvey from "../views/backend/pages/bts/survey/Index.vue";
 
 //page exception
 import Page404 from "../views/frontend/404.vue";
@@ -109,52 +95,37 @@ const routes = [
         name: "master-category",
         component: MasterDataCategory,
       },
+      {
+        path: "master-dokter",
+        name: "master-dokter",
+        component: MasterDataDokter,
+      },
+      {
+        path: "master-kelas-bpjs",
+        name: "master-kelas-bpjs",
+        component: MasterDataKelasBpjs,
+      },
+      {
+        path: "master-problem",
+        name: "master-problem",
+        component: MasterDataProblem,
+      },
+      {
+        path: "master-diagnosis",
+        name: "master-diagnosis",
+        component: MasterDataDiagnosis,
+      },
+      {
+        path: "master-proclist",
+        name: "master-proclist",
+        component: MasterDataProclist,
+      },
 
-      //Route Manajemen
+      //Route Manajement
       {
-        path: "manajemen-dataset",
-        name: "manajemen-dataset",
-        component: ManajemenDataset,
-      },
-      {
-        path: "manajemen-dataset-detail/:dataset_uuid/:method",
-        name: "manajemen-dataset-detail",
-        component: ManajemenDatasetDetail,
-      },
-      {
-        path: "manajemen-dataset-detail-row/:dataset_uuid/:dataset_detail_uuid",
-        name: "manajemen-dataset-detail-row",
-        component: ManajemenDatasetRow,
-      },
-      {
-        path: "manajemen-dataset-detail-table-seting/:dataset_uuid/:method",
-        name: "manajemen-dataset-detail-table-seting",
-        component: ManajemenDatasetTableSetting,
-      },
-      {
-        path: "manajemen-visualization",
-        name: "manajemen-visualization",
-        component: ManajemenVisualization,
-      },
-      {
-        path: "manajemen-infographic",
-        name: "manajemen-infographic",
-        component: ManajemenInfographic,
-      },
-      {
-        path: "manajemen-document",
-        name: "manajemen-document",
-        component: ManajemenDocument,
-      },
-      {
-        path: "manajemen-videographic",
-        name: "manajemen-videographic",
-        component: ManajemenVideographic,
-      },
-      {
-        path: "manajemen-permohonan",
-        name: "manajemen-permohonan",
-        component: ManajemenPermohonan,
+        path: "manajemen-klaim",
+        name: "manajemen-klaim",
+        component: ManajemenKlaim,
       },
 
       //Route slider
@@ -173,25 +144,6 @@ const routes = [
         path: "halaman-depan-video",
         name: "halaman-depan-video",
         component: HalamanDepanVideo,
-      },
-
-      /**
-       * Route Modul BTS
-       */
-      {
-        path: "bts-peta-sebaran",
-        name: "bts-peta-sebaran",
-        component: BtsPetaSebaran,
-      },
-      {
-        path: "bts-daftar-perusahaan",
-        name: "bts-daftar-perusahaan",
-        component: BtsDaftarPerusahan,
-      },
-      {
-        path: "bts-survey",
-        name: "bts-survey",
-        component: BtsSurvey,
       },
 
       /**
@@ -216,20 +168,6 @@ const routes = [
         path: "utility-update-history-items/:update_history_id",
         name: "utility-update-history-items",
         component: UtilityUpdateHistoryItem,
-      },
-
-      /**
-       * Route Manajemen Domain Spam
-       */
-      {
-        path: "manajemen-category",
-        name: "manajemen-category",
-        component: ManajemenCategory,
-      },
-      {
-        path: "manajemen-domain-spam",
-        name: "manajemen-domain-spam",
-        component: ManajemenDomain,
       },
     ],
   },
