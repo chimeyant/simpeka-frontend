@@ -5,14 +5,28 @@
   >
 
     <v-row>
-      <div class="ml-5 mb-10 font-weight-bold black--text">
+      <div class="ml-5 mb-5 font-weight-bold black--text">
         Selamat Datang, {{ user.name.toUpperCase() }}
         <div class="font-weight-regular grey--text">
           Inilah dashboard aplikasi anda
         </div>
       </div>
     </v-row>
-    <v-row class="pa-6">
+    <v-row class="pl-2">
+      <v-col cols="2">
+        <v-select
+          label="Tahun"
+          outlined
+          dense
+          hide-detail
+          :color="theme.color"
+          v-model="tahun"
+          :items="tahuns"
+          @change="refreshTahun"
+        ></v-select>
+      </v-col>
+    </v-row>
+    <v-row class="pt-0 pl-2 pr-2">
       <v-col cols=8>
         <v-card>
           <v-card-title
@@ -24,6 +38,7 @@
               :title="databarchart.title"
               :labels="databarchart.labels"
               :datas="databarchart.datas"
+              :year="tahun"
               :key="barkey"
             />
           </v-card-text>
@@ -47,120 +62,104 @@
       </v-col>
     </v-row>
 
-    <v-row class="pa-1">
-
-      <v-col class="stats-widget-v3">
-        <v-row :class="device.mobile ? `pa-1 ` : `pa-7`">
-          <v-col :cols="device.mobile ? `12` : `4`">
-            <v-card
-              :color="this.theme.color"
-              dark
-              class="card-ant-style"
-            >
-              <div class="d-flex flex-no-wrap justify-space-between">
-                <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">JML. PENDING KLAIM</v-card-title>
-                  <v-card-text style="height:90px">
-                    <v-row class="justify-content-end">
-                      <v-col cols="12">
-                        <v-row class="mt-5 justify-end text-lg-h4 ml-7 mb-5 black--text">{{ dataklaimpertahun }}</v-row>
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
-                  <v-card-actions>
-                    <div class="caption white--text mt-4">
-                      Update At : last minute ago
-                    </div>
-                  </v-card-actions>
-                </div>
-                <div class="mr-8 mt-8">
-                  <v-avatar
-                    size="80"
-                    class="elevation-2"
-                    :color="theme.color + ` darken-1`"
-                  >
-                    <v-img src="/images/claim.png"></v-img>
-
-                  </v-avatar>
-                </div>
-              </div>
-            </v-card>
-          </v-col>
-
-          <v-col :cols="device.mobile ? `12` : `4`">
-            <v-card
-              :color="this.theme.color"
-              dark
-              class="card-ant-style"
-            >
-              <div class="d-flex flex-no-wrap justify-space-between">
-                <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARIF PENDING RS</v-card-title>
-                  <v-card-text style="height:90px">
-                    <v-row class="justify-content-end">
-                      <v-col cols="12">
-                        <v-row class="mt-5 justify-end text-lg-h4  ml-7 mb-5 black--text">{{ tarifrspertahun }}</v-row>
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
-                  <v-card-actions>
-                    <div class="caption white--text mt-4">
-                      Update At : last minute ago
-                    </div>
-                  </v-card-actions>
-                </div>
-                <div class="mr-8 mt-8 ">
-                  <v-avatar
-                    size="80"
-                    class="elevation-2"
-                    :color="theme.color + ` darken-1`"
-                  >
-                    <v-img src="/images/pending-money.png"></v-img>
-
-                  </v-avatar>
-                </div>
-              </div>
-            </v-card>
-          </v-col>
-
-          <v-col :cols="device.mobile ? `12` : `4`">
-            <v-card
-              :color="this.theme.color"
-              dark
-              class="card-ant-style"
-            >
-              <div class="d-flex flex-no-wrap justify-space-between">
-                <div>
-                  <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARFI PENDING INA-CBGs</v-card-title>
-                  <v-card-text style="height: 90px">
-                    <v-row class="justify-content-end">
-                      <v-col cols="12">
-                        <v-row class="mt-5 justify-end text-lg-h4 ml-7 mb-5 black--text">{{ groupdata.jmldatakeuangan }}</v-row>
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
-                  <v-card-actions>
-                    <div class="caption white--text mt-4">
-                      Update At : last minute ago
-                    </div>
-                  </v-card-actions>
-                </div>
-                <div class="mr-8 mt-8">
-                  <v-avatar
-                    size="80"
-                    class="elevation-2"
-                    :color="theme.color + ` darken-1`"
-                  >
-                    <v-img src="/images/finance.png"></v-img>
-
-                  </v-avatar>
-                </div>
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
-
+    <v-row class="pl-2 pr-2 mt-10">
+      <v-col cols="3">
+        <v-select
+          label="Bulan"
+          outlined
+          dense
+          hide-detail
+          :color="theme.color"
+          v-model="bulan"
+          :items="bulans"
+          @change="refreshBulan"
+        ></v-select>
       </v-col>
+    </v-row>
+
+    <v-row class="pa-1">
+      <v-row :class="device.mobile ? `pa-1 ` :  'pl-2 pr-2'">
+        <v-col :cols="device.mobile ? `12` : `4`">
+          <v-card
+            :color="this.theme.color"
+            dark
+            class="card-ant-style"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <div>
+                <v-card-title class="text-h6 box-statistik-title orange--text">JML. PENDING KLAIM</v-card-title>
+                <v-card-text style="height:90px">
+                  <v-row class="">
+                    <v-col cols="12">
+                      <v-row class="mt-0 justify-end text-lg-h4 ml-1 mb-5 black--text">{{ datamonthly.pendingklaim }}</v-row>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+                <v-card-actions>
+                  <div class="caption white--text mt-4">
+                    Update At : last minute ago
+                  </div>
+                </v-card-actions>
+              </div>
+
+            </div>
+          </v-card>
+        </v-col>
+
+        <v-col :cols="device.mobile ? `12` : `4`">
+          <v-card
+            :color="this.theme.color"
+            dark
+            class="card-ant-style"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <div>
+                <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARIF PENDING RS</v-card-title>
+                <v-card-text style="height:90px">
+                  <v-row class="justify-content-end">
+                    <v-col cols="12">
+                      <v-row class="mt-0 justify-end text-lg-h4  ml-7 mb-5 black--text">{{ datamonthly.tarifrs }}</v-row>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+                <v-card-actions>
+                  <div class="caption white--text mt-4">
+                    Update At : last minute ago
+                  </div>
+                </v-card-actions>
+              </div>
+
+            </div>
+          </v-card>
+        </v-col>
+
+        <v-col :cols="device.mobile ? `12` : `4`">
+          <v-card
+            :color="this.theme.color"
+            dark
+            class="card-ant-style"
+          >
+            <div class="d-flex flex-no-wrap justify-space-between">
+              <div>
+                <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARFI PENDING INA-CBGs</v-card-title>
+                <v-card-text style="height: 90px">
+                  <v-row class="justify-content-end">
+                    <v-col cols="12">
+                      <v-row class="mt-0 justify-end text-lg-h4 ml-7 mb-5 black--text">{{ datamonthly.tariftotal }}</v-row>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+                <v-card-actions>
+                  <div class="caption white--text mt-4">
+                    Update At : last minute ago
+                  </div>
+                </v-card-actions>
+              </div>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+
     </v-row>
 
   </v-container>
@@ -170,6 +169,7 @@
 import { mapActions, mapState } from "vuex";
 import DataChart from "../pages/chart/ChartRecapMothly.vue";
 import PieChart from "../pages/chart/PieChart";
+
 import {
   LMap,
   LTileLayer,
@@ -251,7 +251,7 @@ export default {
         "Video Grafis",
         "Dokumen",
       ],
-      datas: [30, 40, 50, 12, 30],
+      datas: [],
     },
     datapiechart: {
       title: "Data Berdasarkan Pengobatan",
@@ -259,8 +259,35 @@ export default {
       datas: [],
     },
 
+    tahuns: [
+      { text: "2022", value: 2022 },
+      { text: "2023", value: 2023 },
+    ],
+    tahun: null,
+    bulans: [
+      { text: "JANUARI", value: "01" },
+      { text: "PEBRUARI", value: "02" },
+      { text: "MARET", value: "03" },
+      { text: "APRIL", value: "04" },
+      { text: "MEI", value: "05" },
+      { text: "JUNI", value: "06" },
+      { text: "JULI", value: "07" },
+      { text: "AGUSTUS", value: "08" },
+      { text: "SEPTEMBER", value: "09" },
+      { text: "OKTOBER", value: "10" },
+      { text: "NOPEMBER", value: "11" },
+      { text: "DESEMBER", value: "12" },
+    ],
+    bulan: null,
+
     piekey: 0,
     barkey: 0,
+
+    datamonthly: {
+      pendingklaim: 0,
+      tarifrs: 0,
+      tariftotal: 0,
+    },
   }),
   computed: {
     ...mapState(["theme", "http", "device", "loading", "event", "user"]),
@@ -286,12 +313,21 @@ export default {
         },
       ],
     });
-
-    this.fetcDataPertahun();
-    this.fetcTarifRsPertahun();
-    this.fetchDataPengobatan();
   },
-  mounted() {},
+  mounted() {
+    let date = new Date();
+    this.tahun = date.getFullYear();
+    this.bulan = date.getMonth() + 1;
+
+    if (this.bulan < 10) {
+      this.bulan = "0" + this.bulan;
+    }
+    this.fetchDataBarchartMonthly();
+    this.fetchDataPengobatan();
+
+    this.fetchPendingClaimMonthly();
+    this.fetcTarifRsPertahun();
+  },
   methods: {
     ...mapActions([
       "setPage",
@@ -313,13 +349,6 @@ export default {
       this.groupdata.jmldatakeuangan = jmldatakeuangan;
     },
 
-    fetcDataPertahun: async function () {
-      try {
-        let { data } = await this.http.get("api/v2/dashboard/recap-per-tahun");
-        this.dataklaimpertahun = data;
-      } catch (error) {}
-    },
-
     fetcTarifRsPertahun: async function () {
       try {
         let { data } = await this.http.get(
@@ -332,7 +361,7 @@ export default {
     fetchDataPengobatan: async function () {
       try {
         let { data } = await this.http
-          .get("api/v2/dashboard/per-jenis-pengobatan")
+          .get("api/v2/dashboard/per-jenis-pengobatan/" + this.tahun)
           .then((res) => {
             this.datapiechart.labels = ["Rawat Inap", "Rawat Jalan"];
             this.datapiechart.datas = res.data;
@@ -342,16 +371,64 @@ export default {
       } catch (error) {}
     },
 
-    fetchDataChartByJenis: async function () {
+    fetchDataBarchartMonthly: async function () {
       try {
-        let {
-          data: { code, success, message, labels, datas },
-        } = await this.http.get("api/v2/data-chart-by-jenis").then((res) => {
-          this.databarchart.labels = res.data.labels;
-          this.databarchart.datas = res.data.datas;
+        let { data } = await this.http
+          .get("api/v2/dashboard/recap-monthly/" + this.tahun)
+          .then((res) => {
+            console.log(res);
+            this.databarchart.datas = res.data;
+            this.databarchart.year = this.tahun;
+            this.barkey += 1;
+          });
+      } catch (error) {}
+    },
 
-          this.barkey += 1;
-        });
+    refreshTahun: function () {
+      this.fetchDataBarchartMonthly();
+      this.fetchDataPengobatan();
+      this.refreshBulan();
+    },
+
+    fetchPendingClaimMonthly: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+
+        let { data } = await this.http.get(
+          "api/v2/dashboard/rekap-pending-klaim-per-bulan/" + bulantahun
+        );
+
+        this.datamonthly.pendingklaim = data;
+      } catch (error) {}
+    },
+
+    refreshBulan: function () {
+      this.fetchPendingClaimMonthly();
+      this.fethTarifRsMonthly();
+      this.fethTarifTotalMonthly();
+    },
+
+    fethTarifRsMonthly: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+
+        let { data } = await this.http.get(
+          "api/v2/dashboard/tarif-rs-monthly/" + bulantahun
+        );
+
+        this.datamonthly.tarifrs = data;
+      } catch (error) {}
+    },
+
+    fethTarifTotalMonthly: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+
+        let { data } = await this.http.get(
+          "api/v2/dashboard/tarif-total-monthly/" + bulantahun
+        );
+
+        this.datamonthly.tariftotal = data;
       } catch (error) {}
     },
   },

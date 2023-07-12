@@ -14,6 +14,7 @@ export default {
     title: String,
     labels: [],
     datas: [],
+    year: null,
   },
 
   computed: {
@@ -22,13 +23,10 @@ export default {
 
   mounted() {
     this.fetchData();
-    //this.color = this.theme.color;
   },
   methods: {
     fetchData: async function () {
-      let { data } = await this.http.get("api/v2/dashboard/recap-monthly");
-
-      data.forEach((element) => {
+      this.datas.forEach((element) => {
         this.color = this.getDynamiColor();
         this.colors.push(this.color);
       });
@@ -48,12 +46,12 @@ export default {
             "OKTOBER",
             "NOPEMBER",
             "DESEMBER",
-          ], //this.labels,
+          ],
           datasets: [
             {
-              label: this.title,
+              label: "Data Statistik Pada Tahun " + this.year,
               backgroundColor: this.colors,
-              data: data,
+              data: this.datas,
             },
           ],
         },
