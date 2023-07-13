@@ -62,7 +62,7 @@
       </v-col>
     </v-row>
 
-    <v-row class="pl-2 pr-2 mt-10">
+    <v-row class="ml-2 mr-2 mt-10">
       <v-col cols="3">
         <v-select
           label="Bulan"
@@ -77,7 +77,7 @@
       </v-col>
     </v-row>
 
-    <v-row class="pa-1">
+    <v-row class="ml-2 mr-2">
       <v-row :class="device.mobile ? `pa-1 ` :  'pl-2 pr-2'">
         <v-col :cols="device.mobile ? `12` : `4`">
           <v-card
@@ -159,6 +159,25 @@
           </v-card>
         </v-col>
       </v-row>
+    </v-row>
+    <v-row class="mt-5 mr-2 ml-2">
+      <v-col cols="12">
+        <div>Rekapitulasi Klaim Per Dokter</div>
+      </v-col>
+      <v-col cols="12">
+        <v-data-table
+          v-show="device.desktop"
+          :headers="doctor.headers"
+          :items="doctor.records"
+          :items-per-page="10"
+          class="elevation-2 mb-1"
+          :color="theme.color"
+          :loading="loading.table"
+          loading-text="Loading... Please wait"
+          :search="search"
+        ></v-data-table>
+
+      </v-col>
 
     </v-row>
 
@@ -288,6 +307,33 @@ export default {
       tarifrs: 0,
       tariftotal: 0,
     },
+
+    doctor: {
+      records: [],
+      headers: [
+        {
+          text: "#",
+          align: "start",
+          sortable: false,
+          value: "nomor",
+          width: 50,
+        },
+        {
+          text: "KODE",
+          align: "start",
+          sortable: false,
+          value: "code",
+          width: 50,
+        },
+        {
+          text: "NAMA",
+          align: "start",
+          sortable: false,
+          value: "name",
+        },
+        { text: "JUMLAH", value: "jml", sortable: true, align: "right" },
+      ],
+    },
   }),
   computed: {
     ...mapState(["theme", "http", "device", "loading", "event", "user"]),
@@ -406,6 +452,7 @@ export default {
       this.fetchPendingClaimMonthly();
       this.fethTarifRsMonthly();
       this.fethTarifTotalMonthly();
+      this.fetchClaimsMonthlyByDoctor();
     },
 
     fethTarifRsMonthly: async function () {
@@ -429,6 +476,18 @@ export default {
         );
 
         this.datamonthly.tariftotal = data;
+      } catch (error) {}
+    },
+
+    fetchClaimsMonthlyByDoctor: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+
+        let { data } = await this.http.get(
+          "api/v2/dashboard/recap-claims-monthly-by-doctor/" + bulantahun
+        );
+
+        this.doctor.records = data;
       } catch (error) {}
     },
   },
