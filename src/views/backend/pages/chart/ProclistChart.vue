@@ -30,12 +30,7 @@ export default {
       //);
       this.renderChart(
         {
-          labels: [
-            "Administrasi Klaim",
-            "Pengisian Resume Medis",
-            "Ketepatan Kode",
-            "Kelengkapan Berkas Penunjang",
-          ], //this.labels,
+          labels: ["99.25", "86.3", "74,1", "99.25", "99.04", "36.07", "44.56"], //this.labels,
           datasets: [
             {
               type: "horizontalBar",
