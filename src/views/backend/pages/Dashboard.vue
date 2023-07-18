@@ -162,6 +162,43 @@
     </v-row>
     <v-row class="mt-5 mr-2 ml-2">
       <v-col cols="12">
+        <v-card>
+          <v-card-title
+            style="background-color:#608580"
+            class="white--text"
+          >Pending Klaim Berdasarkan Kriteria Alasan</v-card-title>
+          <v-card-text class="mt-5">
+            <chart-kategori title="Pending Klaim Berdasarkan Kriteria Alasan" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row class="mt-5 mr-2 ml-2">
+      <v-col cols="6">
+        <v-card>
+          <v-card-title
+            style="background-color:#608580"
+            class="white--text"
+          >ICD - 10</v-card-title>
+          <v-card-text class="mt-5">
+            <diaglist-chart title="Diagnosis" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="6">
+        <v-card>
+          <v-card-title
+            style="background-color:#608580"
+            class="white--text"
+          >ICD -9-CM</v-card-title>
+          <v-card-text class="mt-5">
+            <proclist-chart title="Tindakan" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row class="mt-5 mr-2 ml-2">
+      <v-col cols="12">
         <div>Rekapitulasi Klaim Per Dokter</div>
       </v-col>
       <v-col cols="12">
@@ -188,6 +225,9 @@
 import { mapActions, mapState } from "vuex";
 import DataChart from "../pages/chart/ChartRecapMothly.vue";
 import PieChart from "../pages/chart/PieChart";
+import ChartKategori from "../pages/chart/ChartKategori.vue";
+import DiaglistChart from "../pages/chart/DiaglistChart.vue";
+import ProclistChart from "../pages/chart/ProclistChart.vue";
 
 import {
   LMap,
@@ -207,6 +247,9 @@ export default {
   components: {
     DataChart,
     PieChart,
+    ChartKategori,
+    DiaglistChart,
+    ProclistChart,
     LMap,
     LTileLayer,
     LMarker,
@@ -326,12 +369,12 @@ export default {
           width: 50,
         },
         {
-          text: "NAMA",
+          text: "DOKTER PENANGGUNG JAWAB",
           align: "start",
           sortable: false,
           value: "name",
         },
-        { text: "JUMLAH", value: "jml", sortable: true, align: "right" },
+        { text: "JUMLAH KASUS", value: "jml", sortable: true, align: "right" },
       ],
     },
   }),
