@@ -7,7 +7,8 @@ export default {
   extends: HorizontalBar,
 
   data: () => ({
-    color: "#3F51B5",
+    colors: [],
+    color: null,
   }),
   props: {
     title: String,
@@ -20,23 +21,23 @@ export default {
   },
 
   mounted() {
+    this.datas.forEach((element) => {
+      this.color = this.getDynamiColor();
+      this.colors.push(this.color);
+    });
     this.fetchData();
-    //this.color = this.theme.color;
   },
   methods: {
     fetchData: async function () {
-      //let { data } = await this.http.get(
-      //"api/supervisor/dashboard-pengajuan-per-bulan";
-      //);
       this.renderChart(
         {
-          labels: ["99.25", "86.3", "74,1", "99.25", "99.04", "36.07", "44.56"], //this.labels,
+          labels: this.labels,
           datasets: [
             {
               type: "horizontalBar",
               label: this.title,
-              backgroundColor: "#608580",
-              data: [10, 20, 30, 25, 5],
+              backgroundColor: this.colors,
+              data: this.datas,
             },
           ],
         },
@@ -54,6 +55,12 @@ export default {
           },
         }
       );
+    },
+    getDynamiColor: function () {
+      var r = Math.floor(Math.random() * 255);
+      var g = Math.floor(Math.random() * 255);
+      var b = Math.floor(Math.random() * 255);
+      return "rgb(" + r + "," + g + "," + b + "," + 0.5 + ")";
     },
   },
 };

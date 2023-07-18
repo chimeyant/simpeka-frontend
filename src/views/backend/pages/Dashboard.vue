@@ -168,7 +168,12 @@
             class="white--text"
           >Pending Klaim Berdasarkan Kriteria Alasan</v-card-title>
           <v-card-text class="mt-5">
-            <chart-kategori title="Pending Klaim Berdasarkan Kriteria Alasan" />
+            <chart-kategori
+              title="Pending Klaim Berdasarkan Kriteria Alasan"
+              :labels="kategori.labels"
+              :datas="kategori.data"
+              :key="kategori.key"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -181,7 +186,12 @@
             class="white--text"
           >ICD - 10</v-card-title>
           <v-card-text class="mt-5">
-            <diaglist-chart title="Diagnosis" />
+            <diaglist-chart
+              title="Diagnosis"
+              :labels="diagnostic.labels"
+              :datas="diagnostic.data"
+              :key="diagnostic.key"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -192,7 +202,12 @@
             class="white--text"
           >ICD -9-CM</v-card-title>
           <v-card-text class="mt-5">
-            <proclist-chart title="Tindakan" />
+            <proclist-chart
+              title="Tindakan"
+              :labels="tindakan.labels"
+              :datas="tindakan.data"
+              :key="tindakan.key"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -377,6 +392,22 @@ export default {
         { text: "JUMLAH KASUS", value: "jml", sortable: true, align: "right" },
       ],
     },
+
+    diagnostic: {
+      labels: [],
+      data: [],
+      key: 0,
+    },
+    tindakan: {
+      labels: [],
+      data: [],
+      key: 0,
+    },
+    kategori: {
+      labels: [],
+      data: [],
+      key: 0,
+    },
   }),
   computed: {
     ...mapState(["theme", "http", "device", "loading", "event", "user"]),
@@ -496,6 +527,9 @@ export default {
       this.fethTarifRsMonthly();
       this.fethTarifTotalMonthly();
       this.fetchClaimsMonthlyByDoctor();
+      this.fetchClaimByDiagnostic();
+      this.fetchClaimByTindakan();
+      this.fetchClaimByKategori();
     },
 
     fethTarifRsMonthly: async function () {
@@ -531,6 +565,49 @@ export default {
         );
 
         this.doctor.records = data;
+      } catch (error) {}
+    },
+
+    fetchClaimByDiagnostic: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+        let {
+          data: { labels, data },
+        } = await this.http.get(
+          "api/v2/dashboard/data-chart-by-diagnostic/" + bulantahun
+        );
+
+        this.diagnostic.labels = labels;
+        this.diagnostic.data = data;
+        this.diagnostic.key += 1;
+      } catch (error) {}
+    },
+    fetchClaimByTindakan: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+        let {
+          data: { labels, data },
+        } = await this.http.get(
+          "api/v2/dashboard/data-chart-by-tindakan/" + bulantahun
+        );
+
+        this.tindakan.labels = labels;
+        this.tindakan.data = data;
+        this.tindakan.key += 1;
+      } catch (error) {}
+    },
+    fetchClaimByKategori: async function () {
+      try {
+        const bulantahun = this.tahun + "-" + this.bulan;
+        let {
+          data: { labels, data },
+        } = await this.http.get(
+          "api/v2/dashboard/data-chart-by-kategori/" + bulantahun
+        );
+
+        this.kategori.labels = labels;
+        this.kategori.data = data;
+        this.kategori.key += 1;
       } catch (error) {}
     },
   },
