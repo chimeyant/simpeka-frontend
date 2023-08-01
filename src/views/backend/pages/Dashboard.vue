@@ -536,7 +536,10 @@ export default {
         const bulantahun = this.tahun + "-" + this.bulan;
 
         let { data } = await this.http.get(
-          "api/v2/dashboard/rekap-pending-klaim-per-bulan/" + bulantahun
+          "api/v2/dashboard/rekap-pending-klaim-per-bulan/" +
+            bulantahun +
+            "/" +
+            this.layanan
         );
 
         this.datamonthly.pendingklaim = data;
@@ -558,7 +561,7 @@ export default {
         const bulantahun = this.tahun + "-" + this.bulan;
 
         let { data } = await this.http.get(
-          "api/v2/dashboard/tarif-rs-monthly/" + bulantahun
+          "api/v2/dashboard/tarif-rs-monthly/" + bulantahun + "/" + this.layanan
         );
 
         this.datamonthly.tarifrs = data;
@@ -570,7 +573,10 @@ export default {
         const bulantahun = this.tahun + "-" + this.bulan;
 
         let { data } = await this.http.get(
-          "api/v2/dashboard/tarif-total-monthly/" + bulantahun
+          "api/v2/dashboard/tarif-total-monthly/" +
+            bulantahun +
+            "/" +
+            this.layanan
         );
 
         this.datamonthly.tariftotal = data;
@@ -582,7 +588,10 @@ export default {
         const bulantahun = this.tahun + "-" + this.bulan;
 
         let { data } = await this.http.get(
-          "api/v2/dashboard/recap-claims-monthly-by-doctor/" + bulantahun
+          "api/v2/dashboard/recap-claims-monthly-by-doctor/" +
+            bulantahun +
+            "/" +
+            this.layanan
         );
 
         this.doctor.records = data;
@@ -623,7 +632,10 @@ export default {
         let {
           data: { labels, data },
         } = await this.http.get(
-          "api/v2/dashboard/data-chart-by-kategori/" + bulantahun
+          "api/v2/dashboard/data-chart-by-kategori/" +
+            bulantahun +
+            "/" +
+            this.layanan
         );
 
         this.kategori.labels = labels;
