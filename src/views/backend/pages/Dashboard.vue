@@ -75,6 +75,19 @@
           @change="refreshBulan"
         ></v-select>
       </v-col>
+      <v-spacer></v-spacer>
+      <v-col cols="3">
+        <v-select
+          label=""
+          outlined
+          dense
+          hide-detail
+          :color="theme.color"
+          v-model="layanan"
+          :items="layanans"
+          @change="refreshBulan"
+        ></v-select>
+      </v-col>
     </v-row>
 
     <v-row class="ml-2 mr-2">
@@ -408,6 +421,14 @@ export default {
       data: [],
       key: 0,
     },
+
+    layanans: [
+      { text: "Semua", value: "semua" },
+      { text: "Rawat Jalan", value: "rawat-jalan" },
+      { text: "Rawat Inap", value: "rawat-inap" },
+    ],
+
+    layanan: "semua",
   }),
   computed: {
     ...mapState(["theme", "http", "device", "loading", "event", "user"]),
