@@ -318,7 +318,7 @@ export default {
         width: 300,
       },
       {
-        text: "KETERANGAN ALASAN",
+        text: "KETERANGAN PENYEBAB PENDING KLAIM",
         value: "description",
         sortable: false,
         align: "left",

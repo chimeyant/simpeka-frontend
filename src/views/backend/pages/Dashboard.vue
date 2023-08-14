@@ -92,7 +92,7 @@
 
     <v-row class="ml-2 mr-2">
       <v-row :class="device.mobile ? `pa-1 ` :  'pl-2 pr-2'">
-        <v-col :cols="device.mobile ? `12` : `4`">
+        <v-col :cols="device.mobile ? `12` : `6`">
           <v-card
             :color="this.theme.color"
             dark
@@ -100,7 +100,7 @@
           >
             <div class="d-flex flex-no-wrap justify-space-between">
               <div>
-                <v-card-title class="text-h6 box-statistik-title orange--text">JML. PENDING KLAIM</v-card-title>
+                <v-card-title class="text-h6 box-statistik-title orange--text">Jml. Pending Klaim</v-card-title>
                 <v-card-text style="height:90px">
                   <v-row class="">
                     <v-col cols="12">
@@ -119,7 +119,7 @@
           </v-card>
         </v-col>
 
-        <v-col :cols="device.mobile ? `12` : `4`">
+        <!-- <v-col :cols="device.mobile ? `12` : `4`">
           <v-card
             :color="this.theme.color"
             dark
@@ -144,9 +144,9 @@
 
             </div>
           </v-card>
-        </v-col>
+        </v-col> -->
 
-        <v-col :cols="device.mobile ? `12` : `4`">
+        <v-col :cols="device.mobile ? `12` : `6`">
           <v-card
             :color="this.theme.color"
             dark
@@ -154,7 +154,7 @@
           >
             <div class="d-flex flex-no-wrap justify-space-between">
               <div>
-                <v-card-title class="text-h6 box-statistik-title orange--text">TOTAL TARFI PENDING INA-CBGs</v-card-title>
+                <v-card-title class="text-h6 box-statistik-title orange--text">Total Tarif Pending Klaim</v-card-title>
                 <v-card-text style="height: 90px">
                   <v-row class="justify-content-end">
                     <v-col cols="12">
@@ -179,10 +179,10 @@
           <v-card-title
             style="background-color:#608580"
             class="white--text"
-          >Pending Klaim Berdasarkan Kriteria Alasan</v-card-title>
+          >Pending Klaim Berdasarkan Penyebab Pending Klaim</v-card-title>
           <v-card-text class="mt-5">
             <chart-kategori
-              title="Pending Klaim Berdasarkan Kriteria Alasan"
+              title="Pending Klaim Berdasarkan Penyebab Pending Klaim"
               :labels="kategori.labels"
               :datas="kategori.data"
               :key="kategori.key"
@@ -227,7 +227,7 @@
     </v-row>
     <v-row class="mt-5 mr-2 ml-2">
       <v-col cols="12">
-        <div>Rekapitulasi Klaim Per Dokter</div>
+        <div>Rekapitulasi Pending Klaim Per Dokter</div>
       </v-col>
       <v-col cols="12">
         <v-data-table

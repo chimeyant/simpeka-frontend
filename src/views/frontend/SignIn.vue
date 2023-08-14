@@ -37,7 +37,7 @@
                           SIMPEKA
                         </div>
                         <div class="mt-2 font-weight-thin  text-center">
-                          Sistem Informasi Manajemen Klaim
+                          Sistem Informasi Manajemen Pending Klaim
                         </div>
 
                         <v-form class="pa-10">
