@@ -200,7 +200,7 @@ router.beforeEach((to, from, next) => {
     if (to.name === "signin" && Auth.check) {
       if (Auth.user.authent == "superadmin") {
         next({ name: "dashboard" });
-      } else if (Auth.user.auth === "operator") {
+      } else if (Auth.user.authent === "kepala-rumah-sakit") {
         next({ name: "dashboard" });
       } else {
         next({ name: "dashboard" });
