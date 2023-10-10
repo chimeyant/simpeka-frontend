@@ -90,7 +90,10 @@
       </v-col>
     </v-row>
 
-    <v-row class="ml-2 mr-2">
+    <v-row
+      class="ml-2 mr-2"
+      v-if="user.authent=='administrator'"
+    >
       <v-row :class="device.mobile ? `pa-1 ` :  'pl-2 pr-2'">
         <v-col :cols="device.mobile ? `12` : `6`">
           <v-card
