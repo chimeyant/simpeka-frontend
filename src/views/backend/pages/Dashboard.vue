@@ -90,10 +90,7 @@
       </v-col>
     </v-row>
 
-    <v-row
-      class="ml-2 mr-2"
-      v-if="user.authent == 'administrator'"
-    >
+    <v-row class="ml-2 mr-2">
       <v-row :class="device.mobile ? `pa-1 ` :  'pl-2 pr-2'">
         <v-col :cols="device.mobile ? `12` : `6`">
           <v-card
@@ -149,10 +146,7 @@
           </v-card>
         </v-col> -->
 
-        <v-col
-          :cols="device.mobile ? `12` : `6`"
-          v-show="user.authent=='administrator'"
-        >
+        <v-col :cols="device.mobile ? `12` : `6`">
           <v-card
             :color="this.theme.color"
             dark
@@ -197,10 +191,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row
-      class="mt-5 mr-2 ml-2"
-      v-show="user.authent=='administrator'"
-    >
+    <v-row class="mt-5 mr-2 ml-2">
       <v-col cols="6">
         <v-card>
           <v-card-title
@@ -234,10 +225,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row
-      class="mt-5 mr-2 ml-2"
-      v-show="user.authent=='administrator'"
-    >
+    <v-row class="mt-5 mr-2 ml-2">
       <v-col cols="12">
         <div>Rekapitulasi Pending Klaim Per Dokter</div>
       </v-col>
