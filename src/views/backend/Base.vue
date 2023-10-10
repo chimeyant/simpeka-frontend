@@ -145,7 +145,7 @@ Template base
       }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon color="blue darken-1">mdi-widgets</v-icon>
       </v-btn>
 
@@ -157,7 +157,7 @@ Template base
           color="orange darken-1"
           class=""
         >mdi-bell-outline</v-icon>
-      </v-btn>
+      </v-btn> -->
 
       <v-menu
         v-model="menu"
